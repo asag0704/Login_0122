@@ -4,28 +4,26 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_login.*
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.widget.Toast
 
 
 class LoginActivity : AppCompatActivity() {
 
-    val Id: String = "1234"
-    val Password: String = "12345"
+    // 항상 알맞는 접근제어자 붙이는 습관을 들이면 좋습니다.
+    private val id: String = "1234"
+    private val password: String = "12345"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
         loginBtn.setOnClickListener {
-            if (loginEdt.text.toString() == Id  && passwordEdt.text.toString() == Password) {
+            if (loginEdt.text.toString() == id  && passwordEdt.text.toString() == password) {
                 Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
-                val intent = Intent(baseContext, MainActivity::class.java)
-                intent.putExtra("Id", Id)
-                intent.putExtra("Ps", Password)
+
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("Id", id)
+                intent.putExtra("Ps", password)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
